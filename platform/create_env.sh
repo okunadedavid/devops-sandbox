@@ -44,6 +44,7 @@ docker network create "$DOCKER_NETWORK" 2>/dev/null || true
 
 # start the app container
 docker run -d \
+    --quiet \
     --name "${CONTAINER_NAME}" \
     --label "sandbox.env=${ENV_ID}" \
     --network "${DOCKER_NETWORK}" \
@@ -71,7 +72,7 @@ mv "$temp_file" "$state_file"
 # Setup logging
 mkdir -p "logs/${ENV_ID}"
 docker logs -f "$CONTAINER_NAME" > "logs/${ENV_ID}/app.log" 2>&1 &
-# echo $! > "logs/${ENV_ID}/app.log.pid"
+echo $! > "logs/${ENV_ID}/app.log.pid"
 # echo "Logging to logs/${ENV_ID}/app.log" >&2
 
 # Initialize health log
