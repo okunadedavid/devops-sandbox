@@ -18,7 +18,6 @@ done
 [[ -z "$MODE" ]] && { echo "Error: --mode required"; exit 1; }
 
 STATE_FILE="envs/${ENV_ID}.json"
-[[ -f "$STATE_FILE" ]] || { echo "Error: Environment not found: $ENV_ID"; exit 1; }
 
 CONTAINER_NAME=$(jq -r '.container' "$STATE_FILE")
 DOCKER_NETWORK=$(jq -r '.network' "$STATE_FILE")

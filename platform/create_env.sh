@@ -29,8 +29,9 @@ docker run -d \
     "${APP_IMAGE}"
 
 # write state file
-STATE_FILE="envs/${ENV_ID}.json"
-cat > "$STATE_FILE" <<EOF
+state_file="envs/${env_id}.json"
+temp_file="${state_file}.tmp"
+cat > "$temp_file" <<EOF
 {
     "id": "${ENV_ID}",
     "name": "${NAME}",
@@ -42,7 +43,8 @@ cat > "$STATE_FILE" <<EOF
     "status": "healthy"
 }
 EOF
-echo "state file created"
+mv "$temp_file" "$state_file"
+
 
 # Setup logging
 mkdir -p "logs/${ENV_ID}"
