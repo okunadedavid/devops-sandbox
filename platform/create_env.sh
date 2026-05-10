@@ -18,7 +18,7 @@ CONTAINER_NAME="sandbox_${ENV_ID}"
 # Create a dedicated docker network
 DOCKER_NETWORK="${DOCKER_NETWORK:-devops-sandbox}"
 
-docker network create "$DOCKER_NETWORK" >/dev/null
+docker network create "$DOCKER_NETWORK" 2>/dev/null || true
 echo "Docker network created: $DOCKER_NETWORK"
 
 # start the app container
@@ -26,7 +26,6 @@ docker run -d \
     --name "${CONTAINER_NAME}" \
     --label "sandbox.env=${ENV_ID}" \
     --network "${DOCKER_NETWORK}" \
-    -p "${APP_PORT}:80" \
     "${APP_IMAGE}"
 
 # write state file
@@ -39,7 +38,7 @@ cat > "$STATE_FILE" <<EOF
     "created_at": ${CREATED_AT},
     "expire_at": ${EXPIRE_AT},
     "container_name": "${CONTAINER_NAME}",
-    "app_port": ${APP_PORT}
+    "app_port": ${APP_PORT},
     "status": "healthy"
 }
 EOF
