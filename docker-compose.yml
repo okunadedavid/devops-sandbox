@@ -23,7 +23,7 @@ services:
       context: ./platform
       dockerfile: Dockerfile
 
-    container_name: CONTAINER_NAME
+    container_name: platform-api
 
     ports:
       - "8000:8000"
