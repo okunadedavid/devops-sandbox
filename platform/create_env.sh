@@ -103,3 +103,5 @@ echo "Nginx config written"
 # reload nginx
 docker exec "$NGINX_CONTAINER" nginx -s reload
 echo "Nginx reloaded"
+
+echo "$ENV_ID"
