@@ -20,7 +20,7 @@ services:
 
   api:
     build:
-      context: .
+      context: ./platform
       dockerfile: Dockerfile
 
     container_name: platform-api
