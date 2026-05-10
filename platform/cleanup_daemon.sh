@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -euo pipefail
 
 CLEANUP_LOG="logs/cleanup.log"
