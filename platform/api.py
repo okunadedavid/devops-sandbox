@@ -57,9 +57,7 @@ def create_env():
             text=True,
             timeout=30
         )
-        print("STDOUT:", result.stdout)
-        print("STDERR:", result.stderr)
-        
+
         if result.returncode != 0:
             return jsonify({"error": result.stderr}), 500
         output_lines = result.stdout.strip().splitlines()
