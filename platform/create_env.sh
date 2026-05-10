@@ -3,8 +3,8 @@
 set -euo pipefail
 
 # name and optional TTL
-NAME=${1:-"env"}
-TTL=${2:-1800}
+NAME="${1:-"env"}"
+TTL="${2:-1800}"
 ENV_ID="$(date +%s)-$(openssl rand -hex 4)"
 CREATED_AT=$(date +%s)
 EXPIRE_AT=$((CREATED_AT + TTL))
@@ -29,7 +29,7 @@ docker run -d \
     "${APP_IMAGE}"
 
 # write state file
-state_file="envs/${env_id}.json"
+state_file="envs/${ENV_ID}.json"
 temp_file="${state_file}.tmp"
 cat > "$temp_file" <<EOF
 {
