@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
     networks:
-      - platform-net
+      - devops-sandbox
 
   api:
     build:
@@ -43,8 +43,8 @@ services:
     restart: unless-stopped
 
     networks:
-      - platform-net
+      - devops-sandbox
 
 networks:
-  platform-net:
-    name: platform-net
+  devops-sandbox:
+    name: devops-sandbox

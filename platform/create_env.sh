@@ -47,6 +47,7 @@ docker run -d \
     --name "${CONTAINER_NAME}" \
     --label "sandbox.env=${ENV_ID}" \
     --network "${DOCKER_NETWORK}" \
+    --network-alias "$ENV_ID" \
     "${APP_IMAGE}"
 
 # write state file
@@ -85,7 +86,7 @@ server {
     server_name ${ENV_ID}.${BASE_DOMAIN};
 
     location / {
-        proxy_pass http://${CONTAINER_NAME}:${APP_PORT};
+        proxy_pass http://sandbox_${ENV_ID}:${APP_PORT};
 
         proxy_http_version 1.1;
 
