@@ -26,7 +26,7 @@ services:
     container_name: platform-api
 
     ports:
-      - "8000:8000"
+      - "8000:5000"
 
     volumes:
       - .:/workspace
@@ -34,7 +34,7 @@ services:
     working_dir: /workspace
 
     command: >
-      uvicorn platform.api:app
+      python platform/api.py
       --host 0.0.0.0
       --port 8000
 
