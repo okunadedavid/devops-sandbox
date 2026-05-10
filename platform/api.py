@@ -60,13 +60,13 @@ def create_env():
         
         if result.returncode != 0:
             return jsonify({"error": result.stderr}), 500
-        
+        output_lines = result.stdout.strip().splitlines()
         # Extract env ID from output
-        for line in result.stdout.split('\n'):
-            env_id = result.stdout.strip().splitlines()[-1]
-            return jsonify(load_state(env_id)), 201
-        
-        return jsonify({"error": "Could not parse response"}), 500
+        if not output_lines:
+         return jsonify({"error": "Empty response from create_env.sh"}), 500
+
+        env_id = output_lines[-1].strip()
+        return jsonify(load_state(env_id)), 201
     
     except Exception as e:
         return jsonify({"error": str(e)}), 500
