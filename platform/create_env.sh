@@ -48,7 +48,7 @@ CONTAINER_ID=$(docker run -d \
     --label "sandbox.env=${ENV_ID}" \
     --network "${DOCKER_NETWORK}" \
     --network-alias "$ENV_ID" \
-    "${APP_IMAGE}" 2>/dev/null)
+    "${APP_IMAGE}")
 
 echo "CONTAINER_ID=$CONTAINER_ID"
 
