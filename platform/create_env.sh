@@ -43,12 +43,14 @@ docker network create "$DOCKER_NETWORK" 2>/dev/null || true
 # echo "Docker network created: $DOCKER_NETWORK" >&2
 
 # start the app container
-docker run -d \
+CONTAINER_ID=$(docker run -d \
     --name "${CONTAINER_NAME}" \
     --label "sandbox.env=${ENV_ID}" \
     --network "${DOCKER_NETWORK}" \
     --network-alias "$ENV_ID" \
-    "${APP_IMAGE}"
+    "${APP_IMAGE}")
+
+echo "CONTAINER_ID=$CONTAINER_ID"
 
 # write state file
 state_file="envs/${ENV_ID}.json"
