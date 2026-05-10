@@ -48,3 +48,4 @@ services:
 networks:
   devops-sandbox:
     name: devops-sandbox
+    external: true
