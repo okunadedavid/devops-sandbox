@@ -3,8 +3,25 @@
 set -euo pipefail
 
 # name and optional TTL
-NAME="${1:-"env"}"
-TTL="${2:-1800}"
+NAME="env"
+TTL="1800"
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --name)
+      NAME="$2"
+      shift 2
+      ;;
+    --ttl)
+      TTL="$2"
+      shift 2
+      ;;
+    *)
+      echo "Unknown argument: $1"
+      exit 1
+      ;;
+  esac
+done
+
 ENV_ID="$(date +%s)-$(openssl rand -hex 4)"
 CREATED_AT=$(date +%s)
 EXPIRE_AT=$((CREATED_AT + TTL))
