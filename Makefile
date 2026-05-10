@@ -52,7 +52,7 @@ up:
 	@mkdir -p envs
 
 	@echo "Starting Nginx..."
-	@$(COMPOSE) -f $(COMPOSE_FILE) up -d
+	@docker compose up -d
 
 	@echo "Starting Cleanup Daemon..."
 	@nohup $(CLEANUP_SCRIPT) \
