@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefall
+set -euo pipefail
 
 # name and optional TTL
 NAME=${1:-"env"}
