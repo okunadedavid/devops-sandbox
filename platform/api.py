@@ -63,9 +63,8 @@ def create_env():
         
         # Extract env ID from output
         for line in result.stdout.split('\n'):
-            if 'ID:' in line:
-                env_id = line.split('ID:')[1].strip()
-                return jsonify(load_state(env_id)), 201
+            env_id = result.stdout.strip().splitlines()[-1]
+            return jsonify(load_state(env_id)), 201
         
         return jsonify({"error": "Could not parse response"}), 500
     
