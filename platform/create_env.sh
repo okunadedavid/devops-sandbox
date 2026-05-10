@@ -86,7 +86,7 @@ server {
     server_name ${ENV_ID}.${BASE_DOMAIN};
 
     location / {
-        proxy_pass http://sandbox_${ENV_ID}:${APP_PORT};
+        proxy_pass http://${ENV_ID};
 
         proxy_http_version 1.1;
 
