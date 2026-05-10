@@ -34,7 +34,7 @@ services:
     working_dir: /workspace
 
     command: >
-      uvicorn api.main:app
+      uvicorn platform.api:app
       --host 0.0.0.0
       --port 8000
 
