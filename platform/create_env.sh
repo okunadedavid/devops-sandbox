@@ -40,7 +40,7 @@ CONTAINER_NAME="sandbox_${ENV_ID}"
 DOCKER_NETWORK="${DOCKER_NETWORK:-devops-sandbox}" >&2
 
 docker network create "$DOCKER_NETWORK" 2>/dev/null || true
-echo "Docker network created: $DOCKER_NETWORK" >&2
+# echo "Docker network created: $DOCKER_NETWORK" >&2
 
 # start the app container
 docker run -d \
@@ -72,7 +72,7 @@ mv "$temp_file" "$state_file"
 mkdir -p "logs/${ENV_ID}"
 docker logs -f "$CONTAINER_NAME" > "logs/${ENV_ID}/app.log" 2>&1 &
 echo $! > "logs/${ENV_ID}/app.log.pid"
-echo "Logging to logs/${ENV_ID}/app.log" >&2
+# echo "Logging to logs/${ENV_ID}/app.log" >&2
 
 # Initialize health log
 touch "logs/${ENV_ID}/health.log"
@@ -98,10 +98,10 @@ server {
 }
 EOF
 
-echo "Nginx config written" >&2
+# echo "Nginx config written" >&2
 
 # reload nginx
 docker exec "$NGINX_CONTAINER" nginx -s reload
-echo "Nginx reloaded" >&2
+# echo "Nginx reloaded" >&2
 
 echo "{\"id\":\"$ENV_ID\"}"
