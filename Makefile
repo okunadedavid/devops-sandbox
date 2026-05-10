@@ -8,7 +8,7 @@ API_HOST=0.0.0.0
 PYTHON=python3
 UVICORN=uvicorn
 
-COMPOSE=docker-compose
+COMPOSE=docker compose
 COMPOSE_FILE=docker-compose.yml
 
 CREATE_SCRIPT=./platform/create_env.sh
@@ -52,7 +52,7 @@ up:
 	@mkdir -p envs
 
 	@echo "Starting Nginx..."
-	@docker-compose up
+	@docker compose up
 
 	@echo "Starting Cleanup Daemon..."
 	@nohup $(CLEANUP_SCRIPT) \
@@ -63,7 +63,7 @@ up:
 	> logs/monitor.out 2>&1 &
 
 	@echo "Starting API..."
-	@nohup $(UVICORN) api.main:app \
+	@nohup $(UVICORN) platform.api:app \
 	--host $(API_HOST) \
 	--port $(API_PORT) \
 	> logs/api.out 2>&1 &
