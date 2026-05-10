@@ -26,6 +26,10 @@ ENV_ID="$(date +%s)-$(openssl rand -hex 4)"
 CREATED_AT=$(date +%s)
 EXPIRE_AT=$((CREATED_AT + TTL))
 
+NGINX_CONF_DIR="${NGINX_CONF_DIR:-./nginx/conf.d}"
+BASE_DOMAIN="${BASE_DOMAIN:-localhost}"
+NGINX_CONTAINER="${NGINX_CONTAINER:-nginx}"
+DOCKER_NETWORK="${DOCKER_NETWORK:-devops-sandbox}"
 # load config from .env
 source .env 2>/dev/null || true
 APP_IMAGE="${APP_IMAGE:-nginx:latest}"
