@@ -40,7 +40,7 @@ CONTAINER_NAME="sandbox_${ENV_ID}"
 DOCKER_NETWORK="${DOCKER_NETWORK:-devops-sandbox}"
 
 docker network create "$DOCKER_NETWORK" 2>/dev/null || true
-echo "Docker network created: $DOCKER_NETWORK"
+echo "Docker network created: $DOCKER_NETWORK" >&2
 
 # start the app container
 docker run -d \
@@ -98,10 +98,10 @@ server {
 }
 EOF
 
-echo "Nginx config written"
+echo "Nginx config written" >&2
 
 # reload nginx
 docker exec "$NGINX_CONTAINER" nginx -s reload
-echo "Nginx reloaded"
+echo "Nginx reloaded" >&2
 
-echo "$ENV_ID"
+echo "{\"id\":\"$ENV_ID\"}"
