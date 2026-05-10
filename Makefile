@@ -8,7 +8,7 @@ API_HOST=0.0.0.0
 PYTHON=python3
 UVICORN=uvicorn
 
-COMPOSE=docker compose
+COMPOSE=docker-compose
 COMPOSE_FILE=docker/docker-compose.yml
 
 CREATE_SCRIPT=./platform/create_env.sh
