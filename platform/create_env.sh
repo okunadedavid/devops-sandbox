@@ -44,6 +44,7 @@ docker network create "$DOCKER_NETWORK" 2>/dev/null || true
 
 # start the app container
 CONTAINER_ID=$(docker run -d \
+    --quiet \
     --name "${CONTAINER_NAME}" \
     --label "sandbox.env=${ENV_ID}" \
     --network "${DOCKER_NETWORK}" \
