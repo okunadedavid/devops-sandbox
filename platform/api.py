@@ -62,10 +62,9 @@ def create_env():
             return jsonify({"error": result.stderr}), 500
         output_lines = result.stdout.strip().splitlines()
         # Extract env ID from output
-        if not output_lines:
-         return jsonify({"error": "Empty response from create_env.sh"}), 500
-
-        env_id = output_lines[-1].strip()
+        response = json.loads(result.stdout)
+        env_id = response["id"]
+        
         return jsonify(load_state(env_id)), 201
     
     except Exception as e:
